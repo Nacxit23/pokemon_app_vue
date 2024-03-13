@@ -4,7 +4,11 @@
       <router-link class to="/">Pokemons</router-link>
     </div> -->
     <div class="navbar">
-      <img class="pokemon_logo" :src="require('../../assets/pokemon-logo.svg')" alt="pokemon_logo" />
+      <img
+        class="pokemon_logo"
+        :src="require('../../assets/pokemon-logo.svg')"
+        alt="pokemon_logo"
+      />
       <div class="log_button">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -39,15 +43,33 @@
             mask="url(#IconifyId18dec5925379956011)"
           />
         </svg>
+        <Input
+          :name="'pokemon_search'"
+          :placeholder="'Buscar'"
+          v-model:value="searchData"
+        />
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent,ref } from "vue";
+//component
+import Input from "../input/input.vue";
 
 export default defineComponent({
   name: "HeaderComponent",
+  components: {
+    Input,
+  },
+  setup() {
+    const searchData = ref<string>('')
+    console.log("🚀 ~ setup ~ searchData:", searchData)
+
+    return {
+      searchData,
+    };
+  },
 });
 </script>
 <style scoped>
