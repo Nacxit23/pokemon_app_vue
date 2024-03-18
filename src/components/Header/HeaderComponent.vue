@@ -53,9 +53,10 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent,ref } from "vue";
+import { defineComponent, ref } from "vue";
 //component
 import Input from "../input/input.vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "HeaderComponent",
@@ -63,8 +64,12 @@ export default defineComponent({
     Input,
   },
   setup() {
-    const searchData = ref<string>('')
+    const searchData = ref<string>("");
     console.log("🚀 ~ setup ~ searchData:", searchData)
+    //vuex functions
+    const store = useStore();
+    store.commit("setSearch", searchData);
+    
 
     return {
       searchData,

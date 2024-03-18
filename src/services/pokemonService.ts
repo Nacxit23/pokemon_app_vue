@@ -23,3 +23,14 @@ export const getSpecificPokemon = async (id: number): Promise<Pokemon> => {
   const response = await data.json();
   return response;
 };
+
+export const getPokemonWithName = async (name: string): Promise<Pokemon> => {
+  const data = await fetch(`${api}pokemon/${name}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((rest) => rest);
+  const response = await data.json();
+  return response;
+};

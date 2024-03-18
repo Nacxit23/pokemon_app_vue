@@ -1,5 +1,8 @@
 <template>
   <div class="component">
+    <div>
+      <SearchInfo :lastSearch="searchData" />
+    </div>
     <div class="card_conteiner">
       <Card
         :key="index"
@@ -14,16 +17,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
-import { getSpecificPokemon } from "../../services/pokemonService";
+import { computed, defineComponent, onMounted, ref } from "vue";
+import {
+  getPokemonWithName,
+  getSpecificPokemon,
+} from "../../services/pokemonService";
 import { Pokemon } from "../../types/types";
 //components
-import { Card } from "../../components";
+import { Card, SearchInfo } from "../../components";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "HomeView",
   setup() {
     const pokemons = ref<Pokemon[]>();
+
     onMounted(async () => {
       const fetchPokemons = async () => {
         try {
@@ -38,14 +46,17 @@ export default defineComponent({
           pokemons.value = undefined;
         }
       };
-
       fetchPokemons();
     });
-
-    return { pokemons };
+    
+    //vuex
+    const store = useStore();
+    const searchData = computed(() => store.state.search);
+    return { pokemons, searchData };
   },
   components: {
     Card,
+    SearchInfo,
   },
 });
 </script>

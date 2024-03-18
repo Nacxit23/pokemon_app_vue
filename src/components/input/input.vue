@@ -1,10 +1,11 @@
 import { defineComponent } from 'vue';
 <template lang="">
   <input
+    class="search-input"
     type="text"
     :value="value"
-    :name="{ name }"
-    :placeholder="{ placeholder }"
+    :name="name"
+    :placeholder="placeholder"
     @input="$emit('update:value', $event.target.value)"
   />
 </template>
@@ -28,14 +29,6 @@ export default defineComponent({
   border-radius: 5px;
   outline: none;
   width: 200px;
-}
-
-.search-icon {
-  padding: 8px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .search-input:focus {
