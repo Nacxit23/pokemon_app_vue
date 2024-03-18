@@ -58,6 +58,7 @@ export default defineComponent({
   gap: 5px;
   padding-left: 15px;
   padding-top: 10px;
+  text-transform: capitalize;
 }
 .info {
   font-size: larger;

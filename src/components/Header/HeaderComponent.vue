@@ -54,6 +54,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+
 //component
 import Input from "../input/input.vue";
 import { useStore } from "vuex";
@@ -65,12 +66,9 @@ export default defineComponent({
   },
   setup() {
     const searchData = ref<string>("");
-    console.log("🚀 ~ setup ~ searchData:", searchData)
     //vuex functions
     const store = useStore();
     store.commit("setSearch", searchData);
-    
-
     return {
       searchData,
     };
@@ -80,8 +78,8 @@ export default defineComponent({
 <style scoped>
 .header_conteiner {
   height: 4rem;
-  padding: 10px 15px;
-  width: 100%;
+  padding: 10px 5vw;
+  /* width: 100%; */
   display: flex;
   justify-content: center;
   background: #dc0b2d;
@@ -92,7 +90,7 @@ export default defineComponent({
   justify-content: space-between;
   gap: 10;
   align-items: center;
-  width: 40%;
+  width: 100%;
   height: 100%;
 }
 .log_button {
